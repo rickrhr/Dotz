@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "fe91d9e4-da92-4e50-8d53-cc911135900d",
+		"name": "Dotz",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consulta Planets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const dadosRetornados = pm.response.json();\r",
+							"pm.test(\"Validar que o código de resposta seja 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set('contagem', dadosRetornados.count);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/planets/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"planets",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Films",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const dadosRetornados = pm.response.json();\r",
+							"pm.test(\"Validar que o código de resposta seja 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set('título1', dadosRetornados.results[0].title);\r",
+							"pm.collectionVariables.set('título2', dadosRetornados.results[1].title);\r",
+							"pm.collectionVariables.set('título3', dadosRetornados.results[2].title);\r",
+							"pm.collectionVariables.set('título4', dadosRetornados.results[3].title);\r",
+							"pm.collectionVariables.set('título5', dadosRetornados.results[4].title);\r",
+							"pm.collectionVariables.set('título6', dadosRetornados.results[5].title);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/films/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"films",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Planets com valor superior",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const dadosRetornados = pm.response.json();\r",
+							"pm.test(\"Validar código de planeta não encontrado\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar mensagem exibida\", function () {\r",
+							"    pm.expect(dadosRetornados.detail).to.eq('Not found');\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/planets/61",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"planets",
+						"61"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "título1",
+			"value": ""
+		},
+		{
+			"key": "título2",
+			"value": ""
+		},
+		{
+			"key": "título3",
+			"value": ""
+		},
+		{
+			"key": "título4",
+			"value": ""
+		},
+		{
+			"key": "título5",
+			"value": ""
+		},
+		{
+			"key": "título6",
+			"value": ""
+		},
+		{
+			"key": "contagem",
+			"value": ""
+		}
+	]
+}
